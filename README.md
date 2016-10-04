@@ -33,6 +33,32 @@ user  0m0.936s
 sys   0m0.198s
 ```
 
+Getting Started
+---------------
+
+Global utility:
+
+```sh
+$ npm install -g bucket-runner
+$ bucket-runner --help
+```
+
+Local utility:
+
+```sh
+$ npm install bucket-runner
+$ $(npm bin)/bucket-runner --help
+```
+
+Can also be `require`ed for [script usage](#api-usage):
+
+```sh
+$ npm install bucket-runner
+$ node
+> var runner = require('bucket-runner');
+```
+
+
 CLI Usage
 ---------
 
@@ -144,7 +170,7 @@ If adding a new option, be sure to add descriptions to both this README and [bin
 
 Integration and unit tests are executed using:
 
-```
+```sh
 $ npm run test
 ```
 
