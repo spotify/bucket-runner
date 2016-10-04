@@ -1,0 +1,40 @@
+Usage: [options] <files or globs> -- [cmd] [{files} {partition}]
+
+  Run [cmd] in using multiple processes, distributing the input files to
+  each process.
+
+  Files or globs can be any number of explicit files or shell escaped globs.
+
+  Examples:
+
+    $ bucket-runner 'files/*' # use built-in glob searching
+    $ bucket-runner files/*   # rely on shell expansion
+
+Options:
+
+  --concurrency N          Use N concurrent processes, default: cpus * 4
+
+  --partition-size N       Give N files to each process, default: 2
+
+  --partition-regex N      Give N files to each process, default: 2.
+                           Overrides partition-size if both are used.
+
+  --no-resolve-files       Do not attempt to resolve the given files to
+                           absolute paths, or determine if they exist.
+                           This is useful when using this tool as a generic
+                           argument runner.
+
+  --continue-on-error      Continue, even if a command exits with a non-zero
+                           code.
+
+  --stream-output          Output stderr and stdout immediately, without
+                           buffering.
+
+If the strings `{files}` or `{partition}` are present in the command string,
+they will be replaced with the files or the name of the partition (if using
+a regex) respectively.
+
+For example, the following are equivalent:
+
+  $ bucket-runner files/* -- mocha {files}
+  $ bucket-runner files/* -- mocha
