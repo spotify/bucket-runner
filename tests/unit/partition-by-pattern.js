@@ -1,3 +1,5 @@
+'use strict';
+
 const test = require('tape');
 
 const partitionByPattern = require('../../lib/partition-by-pattern');
