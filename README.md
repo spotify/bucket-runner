@@ -153,4 +153,4 @@ The integration tests use bash, and are untested on Windows. Contributing a Wind
 License
 -------
 
-[LICENSE](LICENSE)
+[Apache 2.0](LICENSE)
