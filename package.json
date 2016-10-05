@@ -28,7 +28,8 @@
     "lint": "eslint bin/ lib/ tests/unit",
     "lint:fix": "npm run lint:check -- --fix",
     "coverage:report": "nyc report --reporter=text-lcov | coveralls",
-    "coverage:html": "nyc report --reporter=html"
+    "coverage:html": "nyc report --reporter=html",
+    "prepublish": "npm run test"
   },
   "keywords": [
     "mocha",
