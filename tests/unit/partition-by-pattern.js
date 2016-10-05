@@ -1,36 +1,38 @@
-var test = require('tape');
+'use strict';
 
-var partitionByPattern = require('../../lib/partition-by-pattern');
+const test = require('tape');
 
-test('partitionByPattern: (.)', function (t) {
-  var files = ['f/a', 'f/b', 'g/c', 'g/d', 'h/e'];
+const partitionByPattern = require('../../lib/partition-by-pattern');
 
-  var actual = partitionByPattern('(.)', files);
-  var expected = {
+test('partitionByPattern: (.)', (t) => {
+  const files = ['f/a', 'f/b', 'g/c', 'g/d', 'h/e'];
+
+  const actual = partitionByPattern('(.)', files);
+  const expected = {
     groups: [['f/a', 'f/b'], ['g/c', 'g/d'], ['h/e']],
-    names: ['f', 'g', 'h']
+    names: ['f', 'g', 'h'],
   };
   t.deepEqual(actual, expected, 'Groups by 2');
   t.end();
 });
 
-test('partitionByPattern: non-matching are excluded', function (t) {
-  var files = ['a', 'b', 'c', 'd', 'e'];
+test('partitionByPattern: non-matching are excluded', (t) => {
+  const files = ['a', 'b', 'c', 'd', 'e'];
 
-  var actual = partitionByPattern('([a-d])', files);
-  var expected = {
+  const actual = partitionByPattern('([a-d])', files);
+  const expected = {
     groups: [['a'], ['b'], ['c'], ['d']],
-    names: ['a', 'b', 'c', 'd']
+    names: ['a', 'b', 'c', 'd'],
   };
   t.deepEqual(actual, expected, '4 groups');
   t.end();
 });
 
-test('partitionByPattern: non-matching', function (t) {
-  var files = ['a', 'b', 'c', 'd', 'e'];
+test('partitionByPattern: non-matching', (t) => {
+  const files = ['a', 'b', 'c', 'd', 'e'];
 
-  var actual = partitionByPattern('(non-matching)', files);
-  var expected = { groups: [], names: [] };
+  const actual = partitionByPattern('(non-matching)', files);
+  const expected = { groups: [], names: [] };
   t.deepEqual(actual, expected, 'no groups');
   t.end();
 });

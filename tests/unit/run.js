@@ -1,46 +1,48 @@
-var test = require('tape');
-var run = require('../../lib/run');
+'use strict';
 
-var setup = function() {
-  var write = process.stdout.write;
+const test = require('tape');
+const run = require('../../lib/run');
+
+function setup() {
+  const write = process.stdout.write;
 
   return function teardown() {
     process.stdout.write = write;
   };
-};
+}
 
-var captureOutput = function() {
-  var output = '';
+function captureOutput() {
+  let output = '';
 
-  process.stdout.write = function(string) {
+  process.stdout.write = function mockWrite(string) {
     output += string;
   };
 
   return function getOutput() {
     return output.trim();
   };
-};
+}
 
-test('run: print output', function(t) {
-  var teardown = setup();
-  var getOutput = captureOutput();
+test('run: print output', (t) => {
+  const teardown = setup();
+  const getOutput = captureOutput();
 
-  run('echo foo', {}, function() {
+  run('echo foo', {}, () => {
     teardown();
     t.equal(getOutput(), 'foo', 'print out after the process exit');
     t.end();
   });
 });
 
-test('run: stream output', function(t) {
-  var teardown = setup();
-  var getOutput = captureOutput();
+test('run: stream output', (t) => {
+  const teardown = setup();
+  const getOutput = captureOutput();
 
-  run('echo foo && sleep 0.2', { 'stream-output': true }, function() {
+  run('echo foo && sleep 0.2', { 'stream-output': true }, () => {
     t.end();
   });
 
-  setTimeout(function() {
+  setTimeout(() => {
     teardown();
     t.equal(getOutput(), 'foo', 'print out when the process is running');
   }, 10);

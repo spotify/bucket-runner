@@ -1,31 +1,31 @@
 #!/usr/bin/env node
+'use strict';
 
-var fs = require('fs');
-var os = require('os');
+const fs = require('fs');
+const path = require('path');
 
-var path = require('path');
+const minimist = require('minimist');
+const debug = require('debug');
+const pkg = require('../package.json');
 
-var minimist = require('minimist');
-var debug = require('debug');
-
-var pkg = require('../package.json');
-var dbg = debug(pkg.name + ':cli');
+const dbg = debug(`${pkg.name}:cli`);
 
 // https://github.com/nodejs/node/issues/6456
 // Prevent truncated output on unhandledExeception(s).
-var setBlocking = require('set-blocking');
+const setBlocking = require('set-blocking');
+
 setBlocking(true);
 
-var defaults = require('../lib/default-options');
-var BucketRunner = require('../index');
+const defaults = require('../lib/default-options');
+const bucketRunner = require('../index');
 
-var argv = minimist(process.argv.slice(2), {
+const argv = minimist(process.argv.slice(2), {
   default: defaults(),
   boolean: [
     'resolve-files',
-    'continue-on-error'
+    'continue-on-error',
   ],
-  '--': true
+  '--': true,
 });
 
 // To be sure.
@@ -38,10 +38,9 @@ if (argv.help) {
   fs.createReadStream(path.join(__dirname, 'usage.txt'))
     .pipe(process.stdout)
     .on('end', process.exit.bind(null, 1));
-  return;
+} else {
+  bucketRunner(argv._, argv['--'].join(' '), argv, (err) => {
+    if (err && typeof err === 'number') { process.exit(err); }
+    if (err) throw err;
+  });
 }
-
-BucketRunner(argv._, argv['--'].join(' '), argv, function (err) {
-  if (err && typeof err === 'number') { process.exit(err); };
-  if (err) throw err;
-});
