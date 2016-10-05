@@ -2,12 +2,6 @@ module.exports = {
 
   extends: 'eslint-config-airbnb',
 
-  plugins: [
-    'react',
-    'jsx-a11y',
-    'import'
-  ],
-
   parserOptions: {
     // This is to avoid eslint complaining:
     //    'use strict' is unnecessary inside of modules
