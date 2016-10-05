@@ -166,8 +166,6 @@ runner(['file1.js', 'glob1/*/**.js'], '_mocha', {
 Contributing
 ------------
 
-If adding a new option, be sure to add descriptions to both this README and [bin/usage.txt](bin/usage.txt) for command-line help.
-
 Integration and unit tests are executed using:
 
 ```sh
@@ -176,9 +174,20 @@ $ npm run test
 
 The integration tests use bash, and are untested on Windows. Contributing a Windows version of the test would be greatly appreciated!
 
+If adding a new option, be sure to add descriptions to both this README and [bin/usage.txt](bin/usage.txt) for command-line help.
+
 This project adheres to the [Open Code of Conduct][code-of-conduct]. By participating, you are expected to honor this code.
 
 [code-of-conduct]: https://github.com/spotify/code-of-conduct/blob/master/code-of-conduct.md
+
+Releasing
+---------
+
+```sh
+$ npm version [major|minor|patch]
+$ git push origin HEAD ---tags
+$ npm publish
+```
 
 License
 -------
