@@ -15,7 +15,7 @@ module.exports = {
     strict: ['error', 'safe'],
 
     // Allow 'use strict' to have the shebang line for bin/cli.js
-    'lines-around-directive': ['error', { before: 'never', after: 'always' }]
+    'lines-around-directive': ['error', 'always']
   }
 
 }
