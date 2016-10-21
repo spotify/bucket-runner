@@ -7,7 +7,8 @@
     "bucket-runner": "bin/cli.js"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=4",
+    "npm": ">=1.4"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,7 @@
     "parallel",
     "concurrent"
   ],
-  "author": "Drew Petersen <senofpeter@gmail.com>",
+  "author": "Drew Petersen <drewp@spotify.com>",
   "license": "Apache 2.0",
   "devDependencies": {
     "coveralls": "^2.11.9",
