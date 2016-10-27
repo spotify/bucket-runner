@@ -1,6 +1,6 @@
 {
   "name": "bucket-runner",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Execute a command in parallel, distributing files and buffering output.",
   "main": "index.js",
   "bin": {
