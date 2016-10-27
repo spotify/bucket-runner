@@ -1,4 +1,4 @@
-bucket-runner
+bucket-runner [![Build Status](https://travis-ci.org/spotify/bucket-runner.svg?branch=master)](https://travis-ci.org/spotify/bucket-runner) [![Coverage Status](https://coveralls.io/repos/github/spotify/bucket-runner/badge.svg?branch=master)](https://coveralls.io/github/spotify/bucket-runner?branch=master)
 =============
 
 Run a command in parallel, distributing the input files to each process and buffer the output to prevent interleaving. Kind of like xargs but with control over output.
