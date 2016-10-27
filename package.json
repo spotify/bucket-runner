@@ -41,6 +41,10 @@
     "concurrent"
   ],
   "author": "Drew Petersen <drewp@spotify.com>",
+  "maintainers": [
+    "Jason Palmer @palmerj3",
+    "Jordan Rome @jordalgo"
+  ],
   "license": "Apache 2.0",
   "devDependencies": {
     "coveralls": "^2.11.9",
