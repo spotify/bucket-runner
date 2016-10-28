@@ -1,7 +1,7 @@
 bucket-runner [![Build Status](https://travis-ci.org/spotify/bucket-runner.svg?branch=master)](https://travis-ci.org/spotify/bucket-runner) [![Coverage Status](https://coveralls.io/repos/github/spotify/bucket-runner/badge.svg?branch=master)](https://coveralls.io/github/spotify/bucket-runner?branch=master)
 =============
 
-Run a command in parallel, distributing the input files to each and buffer output to prevent interleaving. Kind of like xargs but with control over output.
+Run a command in parallel, distributing the input files to each process and buffer the output to prevent interleaving. Kind of like xargs but with control over output.
 
 A common example would be to easily run [mocha](https://mochajs.org/) tests in parallel without any code changes:
 
@@ -114,8 +114,6 @@ f1.js
 f5.js
 ```
 
-NOTE: If `--partition-regex` is used, `partition-size` is necessarily ignored: the regex will potentially created imbalanced partitions.
-
 ### `--partition-regex [regex]`
 
 Use `[regex]` to group the list of files into processes. The regex is matched using the absolute path to the file. If a capture group is specified, it can be accessed via a special command substitution token `{partition}` (including the `{}`). An example scenario: you want to create coverage reports, but your coverage framework needs a unique name for each process creating output:
@@ -128,7 +126,7 @@ $ bucket-runner --partition-regex '(page|lib)\d' tests/* -- istanbul cover _moch
 
 In the above example the coverage destinations would be named `coverage/page` and `coverage/lib` since that was the result of the first-defined capture group in the regex.
 
-NOTE: If `--partition-regex` is used, `partition-size` is necessarily ignored: the regex will potentially created imbalanced partitions.
+NOTE: If `--partition-regex` is used, `partition-size` is ignored as the regex will potentially create imbalanced partitions.
 
 ### `--no-resolve-files`
 
@@ -140,7 +138,7 @@ Sometimes, however, this behavior is not wanted for generic commands: imagine us
 
 ### `--continue-on-error`
 
-Continue processing commands, even if a subprocess emits an error. Default is to halt and exit if an error is emitted.
+Continue processing commands, even if one of the parallel processes emits an error. Default is to halt and exit if an error is emitted.
 
 ### `--stream-output`
 
