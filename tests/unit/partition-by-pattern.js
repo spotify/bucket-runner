@@ -14,6 +14,9 @@
 
 'use strict';
 
+/* eslint-disable jest/expect-expect */
+/* eslint-disable jest/no-test-callback */
+
 const test = require('tape');
 
 const partitionByPattern = require('../../lib/partition-by-pattern');

@@ -19,15 +19,15 @@
 const fs = require('fs');
 const path = require('path');
 
+// https://github.com/nodejs/node/issues/6456
+// Prevent truncated output on unhandledExeception(s).
+const setBlocking = require('set-blocking');
+
 const minimist = require('minimist');
 const debug = require('debug');
 const pkg = require('../package.json');
 
 const dbg = debug(`${pkg.name}:cli`);
-
-// https://github.com/nodejs/node/issues/6456
-// Prevent truncated output on unhandledExeception(s).
-const setBlocking = require('set-blocking');
 
 setBlocking(true);
 
