@@ -7,8 +7,7 @@
     "bucket-runner": "bin/cli.js"
   },
   "engines": {
-    "node": ">=4",
-    "npm": ">=1.4"
+    "node": ">=12"
   },
   "repository": {
     "type": "git",
@@ -23,14 +22,14 @@
     ]
   },
   "scripts": {
-    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "test": "yarn run lint && yarn run test:unit && yarn run test:integration",
     "test:unit": "nyc tape tests/unit/*",
     "test:integration": "nyc tests/integration/tests.sh",
     "lint": "eslint bin/ lib/ tests/unit",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn run lint -- --fix",
     "coverage:report": "nyc report --reporter=text-lcov | coveralls",
     "coverage:html": "nyc report --reporter=html",
-    "prepublish": "in-publish && npm run test || not-in-publish"
+    "prepublish": "in-publish && yarn run test || not-in-publish"
   },
   "keywords": [
     "mocha",
@@ -41,7 +40,7 @@
     "concurrent"
   ],
   "author": "Drew Petersen <drewp@spotify.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "devDependencies": {
     "coveralls": "^2.11.9",
     "eslint": "^3.8.1",
@@ -56,8 +55,8 @@
     "tape": "^4.5.1"
   },
   "dependencies": {
-    "async": "^2.0.0-rc.3",
-    "debug": "^2.2.0",
+    "async": "^3.2.0",
+    "debug": "^4.2.0",
     "glob": "^7.0.3",
     "minimist": "^1.2.0",
     "object-assign": "^4.0.1",
